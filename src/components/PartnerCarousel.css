@@ -1,0 +1,80 @@
+.partner-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    overflow: hidden;
+}
+
+.partner-label {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 2.5rem;
+    font-family: var(--font-mono);
+}
+
+.partner-carousel {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    /* Use mask-image to fade edges so it blends perfectly with textured backgrounds */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.partner-track {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    width: max-content;
+}
+
+.partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px; /* Control logo height for uniformity */
+    cursor: pointer;
+}
+
+.partner-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    
+    /* Make logos light gray/colorless by default */
+    filter: grayscale(100%) opacity(0.5) brightness(1.5);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.partner-logo:hover img {
+    /* Reveal full brand colors, remove grayscale, scale up */
+    filter: grayscale(0%) opacity(1) brightness(1);
+    transform: scale(1.08);
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .partner-logo img {
+    /* Make them dark gray instead of bright white */
+    filter: grayscale(100%) opacity(0.4) brightness(0);
+}
+
+[data-theme="light"] .partner-logo:hover img {
+    /* Reveal full brand colors on hover in light mode too */
+    filter: grayscale(0%) opacity(1) brightness(1);
+}
+
+@media (max-width: 768px) {
+    .partner-section {
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
+    .partner-logo {
+        height: 32px;
+    }
+    .partner-track {
+        gap: 3rem;
+    }
+}

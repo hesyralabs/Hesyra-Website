@@ -1,0 +1,248 @@
+/* ═══════════════════════════════════════
+   For Dentists / Trust Section
+   ═══════════════════════════════════════ */
+
+.trust-section {
+    padding: 5rem 0;
+}
+
+/* ── Header ── */
+.trust-header {
+    max-width: 600px;
+}
+
+.trust-headline {
+    font-size: 3rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.trust-sub {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* ── Metrics Strip ── */
+.trust-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.trust-metric {
+    padding: 1.5rem;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-left: 3px solid var(--accent);
+}
+
+.trust-metric-val {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.trust-metric-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+}
+
+.trust-metric-desc {
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+}
+
+/* ── Compliance Badges ── */
+.trust-compliance {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-default);
+}
+
+.trust-badge svg {
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+/* ── Testimonials ── */
+.trust-testimonials-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.trust-testimonials-header h3 {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.trust-scroll-btns {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.trust-scroll-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-default);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.trust-scroll-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* ── Cards Track (horizontal scroll) ── */
+.trust-cards-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1.5rem;
+    padding-bottom: 2.5rem;
+    margin-top: -1.5rem;
+
+    /* Hide scrollbar but keep scroll */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.trust-cards-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* ── Individual Card ── */
+.trust-card {
+    scroll-snap-align: start;
+    flex: 0 0 380px;
+    padding: 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.trust-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.trust-quote {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-style: italic;
+    margin: 0;
+    border: none;
+    padding: 0;
+    flex: 1;
+}
+
+/* ── Author Row ── */
+.trust-author {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-default);
+}
+
+.trust-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.trust-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.trust-title {
+    font-size: 0.72rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .trust-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-headline {
+        font-size: 2.3rem; /* slightly softer mobile headline */
+        margin-bottom: 0.5rem;
+    }
+
+    .trust-metrics {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .trust-metric {
+        padding: 1.25rem;
+    }
+    
+    .trust-metric-val {
+        font-size: 1.6rem;
+    }
+
+    .trust-card {
+        flex: 0 0 300px;
+    }
+
+    .trust-testimonials-header h3 {
+        font-size: 1.2rem;
+    }
+}

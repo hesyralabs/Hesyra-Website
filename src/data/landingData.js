@@ -1,0 +1,182 @@
+/**
+ * Programmatic SEO: City + Service landing pages
+ * Each entry generates a unique, crawlable, pre-renderable page.
+ */
+
+export const CITIES = [
+    {
+        slug: 'nagpur',
+        name: 'Nagpur',
+        state: 'Maharashtra',
+        region: 'Vidarbha',
+        tagline: 'Our Home City',
+        intro: 'Hesyra Labs is headquartered in Nagpur, Maharashtra — the heart of Vidarbha. We offer same-day pickup for local clinics and 48-hour turnaround across the city.',
+        facts: [
+            'Same-day pickup available for Nagpur clinics',
+            'Free delivery within Nagpur city limits',
+            'Dedicated support line for Nagpur partner clinics',
+        ],
+        searchTerms: ['dental lab nagpur', 'dental lab in nagpur', 'dental prosthetics nagpur', '3d printed crowns nagpur'],
+    },
+    {
+        slug: 'mumbai',
+        name: 'Mumbai',
+        state: 'Maharashtra',
+        region: 'MMR',
+        tagline: 'Serving MMR',
+        intro: 'Hesyra Labs serves dental clinics across Mumbai, Thane, Navi Mumbai, and the greater MMR with overnight digital delivery. No physical impressions, no couriers — just a digital scan link.',
+        facts: [
+            '48-hour delivery anywhere in Mumbai Metropolitan Region',
+            'STL scan upload from any intraoral scanner',
+            'Real-time case tracking via Hesyra Portal',
+        ],
+        searchTerms: ['dental lab mumbai', 'digital dental lab mumbai', '3d printed crowns mumbai', 'dental outsourcing mumbai'],
+    },
+    {
+        slug: 'pune',
+        name: 'Pune',
+        state: 'Maharashtra',
+        region: 'PMR',
+        tagline: 'Digital Dentistry Pune',
+        intro: 'Dental clinics in Pune trust Hesyra Labs for precision 3D printed prosthetics delivered in 48 hours. Fully digital workflow — upload your scan, we handle the rest.',
+        facts: [
+            '48-hour turnaround for all prosthetic types',
+            'Compatible with all major intraoral scanners',
+            'ISO 13485 certified manufacturing',
+        ],
+        searchTerms: ['dental lab pune', 'digital dental lab pune', '3d printed crowns pune', 'dental prosthetics pune'],
+    },
+    {
+        slug: 'delhi',
+        name: 'Delhi',
+        state: 'Delhi NCR',
+        region: 'NCR',
+        tagline: 'Serving Delhi NCR',
+        intro: 'Hesyra Labs delivers precision-crafted 3D printed dental prosthetics to clinics across Delhi, Gurgaon, Noida, and Faridabad. Digital workflow, guaranteed 48-hour turnaround.',
+        facts: [
+            '48-hour delivery across Delhi NCR',
+            'Free test crown for new partner clinics',
+            'No subscription or joining fees',
+        ],
+        searchTerms: ['dental lab delhi', 'digital dental lab delhi', '3d printed crowns delhi ncr', 'best dental lab delhi'],
+    },
+    {
+        slug: 'hyderabad',
+        name: 'Hyderabad',
+        state: 'Telangana',
+        region: 'Hyderabad',
+        tagline: 'Digital Dentistry Hyderabad',
+        intro: 'Hesyra Labs partners with dental clinics in Hyderabad and Secunderabad to deliver 3D printed crowns, aligners, and surgical guides in 48 hours — completely digitally.',
+        facts: [
+            'Fully digital — no physical impressions needed',
+            '48-hour guaranteed delivery',
+            'Biocompatible ISO-certified materials',
+        ],
+        searchTerms: ['dental lab hyderabad', 'digital dental lab hyderabad', '3d printed crowns hyderabad', 'dental prosthetics telangana'],
+    },
+    {
+        slug: 'bangalore',
+        name: 'Bangalore',
+        state: 'Karnataka',
+        region: 'Bengaluru',
+        tagline: 'Tech City Dental Lab',
+        intro: 'In India\'s tech capital, Hesyra Labs brings the same digital precision to dental manufacturing. Partner with us for 48-hour 3D printed prosthetics across Bengaluru.',
+        facts: [
+            '48-hour turnaround for Bangalore clinics',
+            'CAD/CAM precision at 62-micron resolution',
+            'Instant digital remakes from saved files',
+        ],
+        searchTerms: ['dental lab bangalore', 'dental lab bengaluru', '3d printed crowns bangalore', 'digital dental lab bangalore'],
+    },
+    {
+        slug: 'chennai',
+        name: 'Chennai',
+        state: 'Tamil Nadu',
+        region: 'Chennai',
+        tagline: 'Serving South India',
+        intro: 'Hesyra Labs delivers precision dental prosthetics to clinics in Chennai and across Tamil Nadu. Upload your scan, track your case, receive in 48 hours.',
+        facts: [
+            '48-hour delivery to Chennai clinics',
+            'Cloud portal for real-time case tracking',
+            'Free demo case for first-time partners',
+        ],
+        searchTerms: ['dental lab chennai', 'digital dental lab chennai', '3d printed crowns chennai', 'dental outsourcing tamil nadu'],
+    },
+    {
+        slug: 'ahmedabad',
+        name: 'Ahmedabad',
+        state: 'Gujarat',
+        region: 'Ahmedabad',
+        tagline: 'Serving Gujarat',
+        intro: 'Dental clinics in Ahmedabad and across Gujarat rely on Hesyra Labs for fast, precise 3D printed prosthetics. Digital workflow, 48-hour delivery, zero compromises.',
+        facts: [
+            '48-hour delivery to Ahmedabad clinics',
+            'ISO 13485 certified quality assurance',
+            'Compatible with all major scanner brands',
+        ],
+        searchTerms: ['dental lab ahmedabad', 'digital dental lab gujarat', '3d printed crowns ahmedabad', 'dental prosthetics gujarat'],
+    },
+]
+
+export const SERVICES = [
+    {
+        slug: '3d-printed-crowns',
+        name: '3D Printed Dental Crowns',
+        productSlug: 'crowns-bridges',
+        headline: 'Precision 3D Printed Dental Crowns — 48-Hour Delivery Across India',
+        intro: 'Hesyra Labs manufactures ceramic-hybrid 3D printed dental crowns with 62-micron DLP precision. No physical impressions. No delays. Just upload your intraoral scan and receive your finished crown in 48 hours.',
+        keyPoints: [
+            { label: 'Resolution', value: '62µm DLP pixel accuracy' },
+            { label: 'Turnaround', value: '48 hours guaranteed' },
+            { label: 'Material', value: 'Ceramic-hybrid biocompatible resin' },
+            { label: 'Compatibility', value: 'All intraoral scanners (STL/PLY)' },
+            { label: 'Certification', value: 'ISO 13485 / CE Class IIa' },
+        ],
+        searchTerms: ['3d printed dental crowns india', 'digital dental crowns india', 'dental crowns 48 hours', 'best dental crown lab india'],
+        faq: [
+            { q: 'How long does a 3D printed crown take?', a: '48 hours from scan approval to delivery, anywhere in India.' },
+            { q: 'Are 3D printed crowns as strong as milled crowns?', a: 'Yes. Our ceramic-hybrid resins achieve ≥350 MPa compressive strength — equivalent to milled zirconia for most indications.' },
+            { q: 'What scanners are compatible?', a: 'All major brands: iTero, 3Shape TRIOS, Carestream, Planmeca, Medit, and more. We accept any STL/PLY file.' },
+        ],
+    },
+    {
+        slug: 'clear-aligners',
+        name: 'Clear Aligners',
+        productSlug: 'aligners',
+        headline: 'Digital Clear Aligners Manufactured in India — 48-Hour Turnaround',
+        intro: 'Hesyra Labs produces precision thermoformed clear aligners from 3D printed models with 62-micron accuracy. Upload your digital scan, receive your aligner set in 48 hours.',
+        keyPoints: [
+            { label: 'Turnaround', value: '48 hours per set' },
+            { label: 'Material', value: '0.8mm biocompatible polyurethane' },
+            { label: 'Thickness options', value: '0.5 / 0.8 / 1.0mm available' },
+            { label: 'Fit accuracy', value: '±0.05mm from digital model' },
+            { label: 'Cases', value: 'Mild to moderate alignment corrections' },
+        ],
+        searchTerms: ['clear aligners india manufacturer', 'dental aligner lab india', 'in-office aligner india', 'digital aligner india'],
+        faq: [
+            { q: 'How are the aligners manufactured?', a: 'We 3D print precision models at 62-micron resolution, then thermoform biocompatible polyurethane over them.' },
+            { q: 'What files do you need?', a: 'An STL scan of both arches and your prescribed staging plan. We can also help with staging design.' },
+            { q: 'Can I do unlimited refinements?', a: 'Yes — digital remakes are available at any time from saved files. Only material costs apply.' },
+        ],
+    },
+    {
+        slug: 'digital-dentures',
+        name: 'Digital Dentures',
+        productSlug: 'dentures',
+        headline: 'Digital Dentures Manufactured in 48 Hours — No Impressions Needed',
+        intro: 'Hesyra Labs manufactures precision digital dentures from intraoral scans. Our 3D printing workflow eliminates messy impressions, multiple try-ins, and weeks of waiting.',
+        keyPoints: [
+            { label: 'Appointments', value: 'Just 2 (down from 5-7)' },
+            { label: 'Turnaround', value: '48-72 hours' },
+            { label: 'Material', value: 'High-strength PMMA with ≥110 MPa flexural strength' },
+            { label: 'Remake', value: 'Instant digital reprint from saved file' },
+            { label: 'Records', value: 'Digital file retained permanently' },
+        ],
+        searchTerms: ['digital dentures india', '3d printed dentures india', 'denture lab india 48 hours', 'same day dentures india'],
+        faq: [
+            { q: 'Do you need physical impressions?', a: 'No. We only need a digital intraoral scan in STL or PLY format.' },
+            { q: 'How long does a digital denture take?', a: '48-72 hours from scan approval to delivery.' },
+            { q: 'What if the denture needs adjustment?', a: 'Minor adjustments can be handled at the clinic. If a reprint is needed, we reproduce from the original digital file at minimal cost.' },
+        ],
+    },
+]

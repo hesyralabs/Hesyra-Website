@@ -1,0 +1,200 @@
+/* ── Products Grid ── */
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-top: 0.75rem;
+    max-width: 560px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* ── Product Card ── */
+.product-card {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 30px var(--accent-glow);
+}
+
+/* ── Product Visual ── */
+.product-visual {
+    height: 240px;
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border-default);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
+}
+
+/* ── Category Pills ── */
+.product-category-pill {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.pill-restoration {
+    background: rgba(122, 156, 150, 0.2);
+    color: var(--accent);
+    border: 1px solid rgba(122, 156, 150, 0.4);
+}
+
+.pill-surgical {
+    background: rgba(99, 140, 220, 0.2);
+    color: #7aaff0;
+    border: 1px solid rgba(99, 140, 220, 0.4);
+}
+
+.pill-ortho {
+    background: rgba(180, 140, 220, 0.2);
+    color: #c4a0e8;
+    border: 1px solid rgba(180, 140, 220, 0.4);
+}
+
+/* ── Product Info ── */
+.product-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-info h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.product-info p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+/* ── Specs ── */
+.product-specs-row {
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+/* ── CTA Button ── */
+.product-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    text-decoration: none;
+    margin-top: auto;
+}
+
+.product-cta svg {
+    transition: transform 0.2s ease;
+}
+
+.product-cta:hover svg {
+    transform: translateX(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Shared Spec Row (duplicated from Technology.css for isolation) ── */
+.tech-data-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-default);
+    padding: 0.6rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+}
+
+.tech-data-row:last-child {
+    border-bottom: none;
+}
+
+.td-label {
+    color: var(--text-tertiary);
+}
+
+.td-val {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.5rem;
+        padding-bottom: 2rem;
+        /* Hide scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        margin-left: -1.5rem; /* Break out of container to edge */
+        margin-right: -1.5rem; /* Break out of container to edge */
+        padding-left: 1.5rem; /* Indent first card */
+        padding-right: 1.5rem;
+    }
+
+    .product-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .product-card {
+        scroll-snap-align: center;
+        flex: 0 0 85%; /* Make cards almost full width so you see the next one peeking */
+        max-width: 340px;
+    }
+
+    .product-info {
+        padding: 1.5rem;
+    }
+
+    .product-visual {
+        height: 220px;
+    }
+    
+    .product-info h3 {
+        font-size: 1.3rem; /* Boost reading legibility on cards */
+    }
+}

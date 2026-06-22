@@ -1,0 +1,185 @@
+/* ═══════════════════════════════════════════════
+   HERO — Premium Editorial Layout
+   ═══════════════════════════════════════════════ */
+
+.hero {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -1px;
+}
+
+/* ── Background Video ── */
+.hero-video-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--bg-base);
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.35;
+}
+
+.hero-video-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 26, 51, 0.3) 0%,
+        rgba(0, 26, 51, 0.85) 75%,
+        var(--bg-base) 100%
+    );
+    z-index: 1;
+}
+
+/* ── Layout ── */
+.hero-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════
+   HEADLINE — Instrument Serif, editorial scale
+   ═══════════════════════════════════════════════ */
+.hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 3.8rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    width: 100%;
+    color: var(--text-primary);
+}
+
+.hero-line-1,
+.hero-line-2,
+.hero-line-3 {
+    display: block;
+}
+
+.hero-line-3 {
+    margin-top: 0.1em;
+}
+
+/* The "48 Hours." — italic accent, clean and confident */
+.hero-accent {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════
+   SUBTITLE — Light, airy, restrained
+   ═══════════════════════════════════════════════ */
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 3.5rem auto;
+    letter-spacing: 0.005em;
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS — Clear hierarchy: solid primary + ghost
+   ═══════════════════════════════════════════════ */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Primary — solid, confident */
+.hero-btn-primary {
+    padding: 0.9rem 2rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 10px;
+}
+
+/* Secondary — ghost text link, not a full button */
+.hero-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0.9rem 0;
+}
+
+.hero-btn-ghost:hover {
+    color: var(--text-primary);
+}
+
+.hero-btn-ghost svg {
+    transition: transform 0.2s ease;
+}
+
+.hero-btn-ghost:hover svg {
+    transform: translateX(3px);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 85vh;
+        padding-top: 6rem;
+        padding-bottom: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .hero-btn-primary {
+        width: 100%;
+    }
+}

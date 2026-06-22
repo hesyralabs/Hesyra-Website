@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* ═══════════════════════════════════════════════
+   BRAND CONSTANTS (never change per theme)
+   ═══════════════════════════════════════════════ */
+:root {
+  --dark-azure: #001A33;
+  --bioceramic: #7A9C96;
+  --substrate-gray: #E8E6E5;
+  --darkest-wood: #020603;
+
+  --font-display: 'Montserrat', sans-serif;
+  --font-hero: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL DARK THEME (default & only theme)
+   ═══════════════════════════════════════════════ */
+:root {
+  --bg-base: var(--dark-azure);
+  --bg-surface: #00243f;
+  --bg-glass: rgba(0, 26, 51, 0.55);
+  --bg-deep: #000d1a;
+
+  --accent: var(--bioceramic);
+  --accent-glow: rgba(122, 156, 150, 0.2);
+  --accent-bright: #90b5ae;
+
+  --text-primary: var(--substrate-gray);
+  --text-secondary: #9baab0;
+  --text-tertiary: #5e7a80;
+
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-default: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(122, 156, 150, 0.3);
+
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+
+  --logo-filter: invert(1);
+  --btn-primary-bg: var(--substrate-gray);
+  --btn-primary-text: var(--dark-azure);
+  --btn-brand-bg: var(--bioceramic);
+  --btn-brand-text: var(--dark-azure);
+
+  --grid-dot: rgba(122, 156, 150, 0.06);
+  --glow-1: rgba(122, 156, 150, 0.12);
+  --glow-2: rgba(0, 26, 51, 0.3);
+  --noise-opacity: 0.03;
+
+  --data-val: var(--bioceramic);
+  --crown-border: rgba(255, 255, 255, 0.2);
+  --crown-fill: rgba(255, 255, 255, 0.03);
+  --crown-highlight: rgba(122, 156, 150, 0.08);
+  --scan-color: var(--accent-bright);
+  --pedestal-color: rgba(122, 156, 150, 0.2);
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL RESET & BASE
+   ═══════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip; /* clip instead of hidden — hidden breaks position: sticky */
+  min-width: 1200px; /* LOCK to desktop width — prevents ALL mobile breakpoints from firing */
+}
+
+html, body {
+  /* max-width removed — we want the full desktop layout always */
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: clip; /* clip instead of hidden — hidden breaks position: sticky */
+  position: relative;
+}
+
+/* Noise overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: var(--noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ─── Background effects ─── */
+.bg-grid-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.ambient-glow {
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-1) 0%, transparent 70%);
+  top: -200px;
+  right: -200px;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(80px);
+}
+
+.ambient-glow-alt {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-2) 0%, transparent 70%);
+  bottom: -100px;
+  left: -100px;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(100px);
+}
+
+@media (max-width: 768px) {
+  .ambient-glow {
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    right: -50px;
+    filter: blur(60px);
+  }
+  .ambient-glow-alt {
+    width: 250px;
+    height: 250px;
+    bottom: -50px;
+    left: -50px;
+    filter: blur(60px);
+  }
+}
+
+/* ─── Typography ─── */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, var(--text-primary) 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.section-header .mono-label {
+  margin-top: 4rem;
+}
+
+.mono-label::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 0 3rem;
+  }
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+/* ─── Off-screen rendering optimization ─── */
+/* Tells the browser to skip rendering sections until they're near the viewport */
+.trust-section,
+.roi-section,
+.faq-section,
+.cta-banner {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ─── Glass Panel ─── */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.glass-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  gap: 8px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Magnetic Button Inner Element */
+.btn-magnetic-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+  height: 100%;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 25px var(--accent-glow);
+}
+
+.btn-brand {
+  background: var(--btn-brand-bg);
+  color: var(--btn-brand-text);
+  font-weight: 700;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.btn-brand:hover {
+  background: var(--accent-bright);
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: var(--bioceramic);
+  color: #fff;
+}
+
+/* Global transition removed — was applying 0.4s to every element, causing sluggishness.
+   Individual components define their own targeted transitions instead. */
+
+/* ─── Animations ─── */
+@keyframes spin {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

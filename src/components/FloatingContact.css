@@ -1,0 +1,56 @@
+.floating-contact {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--brand-blue);
+    color: var(--text-primary);
+    padding: 0.65rem 1.25rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: 0 4px 16px rgba(0, 26, 51, 0.4);
+    border: 1px solid rgba(122, 156, 150, 0.2);
+    transition: all 0.3s ease;
+    height: 44px;
+}
+
+.floating-contact:hover {
+    background: var(--brand-accent);
+    color: var(--brand-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(122, 156, 150, 0.4);
+}
+
+.floating-contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .floating-contact {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+    }
+    
+    .floating-contact-text {
+        display: none;
+    }
+
+    .floating-contact-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}

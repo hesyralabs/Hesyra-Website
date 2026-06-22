@@ -1,0 +1,7 @@
+TYPE: debug TEXT: [vite] connecting...
+TYPE: debug TEXT: [vite] connected.
+TYPE: info TEXT: %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+TYPE: warn TEXT: Allow attribute will take precedence over 'allowfullscreen'.
+TYPE: error TEXT: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /5.png
+TYPE: error TEXT: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /7.png
+TYPE: error TEXT: Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. /6.png

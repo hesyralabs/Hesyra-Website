@@ -1,0 +1,159 @@
+/* ── ROI Section ── */
+.roi-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.roi-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (min-width: 768px) {
+    .roi-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+/* ── Left text column ── */
+.roi-text h3 {
+    font-size: 1.8rem;
+    margin: 0.75rem 0 0.5rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.roi-text p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 420px;
+}
+
+.roi-disclaimer {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+/* ── Right widget column ── */
+.roi-widget {
+    padding: 2rem;
+    border-radius: 16px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-default);
+}
+
+.roi-slider-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.roi-slider-val {
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+}
+
+/* ── Range slider ── */
+.roi-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--border-strong);
+    border-radius: 100px;
+    outline: none;
+}
+
+.roi-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: transform 0.15s ease;
+}
+
+.roi-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.roi-range-marks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    color: var(--text-tertiary);
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+}
+
+/* ── Output blocks ── */
+.roi-output-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.roi-output {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.roi-output-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.roi-output-val.accent {
+    color: var(--accent);
+}
+
+.roi-output-unit {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    margin-left: 2px;
+    font-family: var(--font-mono);
+}
+
+.roi-output-label {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-family: var(--font-mono);
+}
+
+@media (max-width: 768px) {
+    .roi-text h3 {
+        font-size: 2.2rem;
+    }
+    .roi-widget {
+        padding: 1.5rem;
+    }
+    .roi-output-val {
+        font-size: 2rem;
+        letter-spacing: -0.04em;
+    }
+}

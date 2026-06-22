@@ -1,0 +1,104 @@
+.cta-banner {
+    background: linear-gradient(180deg, var(--bg-base) 0%, #0d2a3d 50%, var(--bg-deep) 100%);
+    text-align: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.cta-banner-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-banner .mono-label {
+    margin-top: 0;
+}
+
+.cta-banner h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta-banner p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.cta-input-group {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.cta-input {
+    flex: 1;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    outline: none;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.cta-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+    background: var(--bg-surface);
+}
+
+.cta-input::placeholder {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.cta-input-full {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .cta-banner h2 {
+        font-size: 2.2rem;
+        line-height: 1.1;
+    }
+    .cta-banner p {
+        font-size: 1.05rem;
+    }
+    
+    /* Force unity instead of column stacking */
+    .cta-input-group {
+        flex-direction: row; /* keep horizontal! */
+        gap: 0.5rem;
+        background: var(--bg-glass);
+        padding: 0.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--border-default);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .cta-input {
+        background: transparent;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        width: 100%;
+        backdrop-filter: none; /* Removed so parent pill controls it */
+    }
+
+    .cta-input:focus {
+        box-shadow: none;
+        background: transparent;
+    }
+    
+    .cta-input-group .btn {
+        flex-shrink: 0;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+    }
+}

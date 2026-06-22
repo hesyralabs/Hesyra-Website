@@ -1,0 +1,175 @@
+.social-float-container {
+    position: fixed;
+    bottom: 5.5rem; /* Stacked above Contact button */
+    right: 2rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.social-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    position: absolute;
+    bottom: 60px; /* Above the main button */
+    right: 5px; /* Center with main button */
+    pointer-events: none;
+}
+
+.social-links-wrapper.open {
+    pointer-events: auto;
+}
+
+.social-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.social-links-wrapper.open .social-link-item {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    /* Staggered delay based on CSS variable index */
+    transition-delay: calc(var(--link-index) * 0.05s);
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-default);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-primary);
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.social-link-item:hover .social-icon {
+    background: var(--hover-color);
+    color: #fff;
+    border-color: var(--hover-color);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.social-tooltip {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 12px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-default);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.social-link-item:hover .social-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.social-main-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 3;
+    position: relative;
+    outline: none;
+}
+
+/* Pulsing effect when closed */
+.social-main-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    z-index: -1;
+    opacity: 0.6;
+    animation: pulse-social 2s infinite;
+}
+
+.social-main-btn.active::before,
+.social-float-container:hover .social-main-btn::before {
+    animation: none;
+    opacity: 0;
+}
+
+.social-main-btn:hover {
+    transform: scale(1.05);
+    background: var(--accent-bright);
+    box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.social-main-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-surface);
+    transform: rotate(90deg);
+}
+
+.icon-container-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+@keyframes pulse-social {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.4); opacity: 0; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .social-tooltip {
+        display: none;
+    }
+    .social-float-container {
+        bottom: 5rem;
+        right: calc(1.5rem + 3px); /* Nudged left 3px for perfect alignment with Contact button */
+    }
+    .social-links-wrapper {
+        bottom: 50px; /* Tighter spacing on mobile */
+    }
+    .social-main-btn {
+        width: 44px;
+        height: 44px;
+    }
+    .social-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
