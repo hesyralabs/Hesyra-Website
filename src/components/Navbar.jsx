@@ -1,12 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import './Navbar.css'
 import LogoIcon from './LogoIcon'
+import { setScrollLocked } from '../hooks/useSmoothScroll'
 
 export default function Navbar() {
     const { pathname } = useLocation()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+    // The mobile menu is a fixed full-height overlay — without this the page
+    // keeps scrolling underneath it.
+    useEffect(() => {
+        setScrollLocked(isMobileMenuOpen)
+        return () => setScrollLocked(false)
+    }, [isMobileMenuOpen])
 
     // Helper to determine if we need to route to home first
     const getLinkPath = (hash) => pathname === '/' ? hash : `/${hash}`

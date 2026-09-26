@@ -1,0 +1,489 @@
+.hms-cinema-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: #ffffff;
+  user-select: none;
+}
+
+/* 1. Header Bar */
+.hms-cinema-header {
+  height: 48px;
+  min-height: 48px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 12, 16, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 10;
+}
+
+.hms-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hms-cinema-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px;
+  background: rgba(56, 239, 125, 0.1);
+  border: 1px solid rgba(56, 239, 125, 0.3);
+  border-radius: 9999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #38ef7d;
+  text-transform: uppercase;
+}
+
+.hms-live-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38ef7d;
+  box-shadow: 0 0 8px #38ef7d;
+  animation: hmsLivePulse 1.8s ease-in-out infinite;
+}
+
+@keyframes hmsLivePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.hms-cinema-clock {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: #a0aec0;
+}
+
+.hms-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hms-ctrl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hms-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.hms-ctrl-btn.icon-only {
+  padding: 5px 7px;
+}
+
+/* 2. Visual Motion Stage */
+.hms-cinema-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #05070a;
+}
+
+.hms-media-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hms-stage-video,
+.hms-stage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: contrast(1.05) brightness(0.95);
+}
+
+.hms-media-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 80%, rgba(0, 0, 0, 0.95) 100%);
+  pointer-events: none;
+}
+
+/* Laser Scan Line Sweep */
+.hms-optical-scan-plane {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 239, 125, 0.9), transparent);
+  box-shadow: 0 0 16px #38ef7d;
+  animation: hmsLaserScan 3.2s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes hmsLaserScan {
+  0% { top: 15%; opacity: 0.2; }
+  50% { opacity: 0.9; }
+  100% { top: 85%; opacity: 0.2; }
+}
+
+/* Stage Chip (Top-Left) */
+.hms-cinema-stage-chip {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  background: rgba(10, 14, 20, 0.85);
+  border: 1px solid rgba(56, 239, 125, 0.35);
+  border-radius: 9999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #38ef7d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hms-stage-chip-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #38ef7d;
+  box-shadow: 0 0 8px #38ef7d;
+}
+
+/* Top-Right Stat Card */
+.hms-cinema-stat-card {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  padding: 12px 16px;
+  background: rgba(10, 14, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  text-align: right;
+  z-index: 5;
+  pointer-events: none;
+  min-width: 160px;
+}
+
+.hms-stat-kicker {
+  font-family: var(--font-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7a9c96;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.hms-stat-main {
+  font-family: var(--font-display, var(--font-mono, monospace));
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.hms-stat-subtext {
+  font-family: var(--font-mono, monospace);
+  font-size: 9.5px;
+  color: #38ef7d;
+  margin-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* Center HUD Stamp */
+.hms-center-hud-stamp {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.hms-hud-crosshair-icon {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #38ef7d;
+}
+
+/* Bottom-Right Specs Card */
+.hms-cinema-specs-card {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  padding: 10px 14px;
+  background: rgba(10, 14, 20, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  pointer-events: none;
+  min-width: 170px;
+}
+
+.hms-specs-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7a9c96;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hms-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hms-spec-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: #cbd5e1;
+}
+
+.hms-spec-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #38ef7d;
+}
+
+/* Bottom-Left Kinetic Headline Overlay */
+.hms-cinema-narrative-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  max-width: 420px;
+  padding: 16px 20px;
+  background: rgba(8, 12, 18, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.hms-narrative-stage {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7a9c96;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.hms-narrative-heading {
+  font-family: var(--font-display, inherit);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.hms-narrative-desc {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* 3. Interactive Multi-Track Timeline */
+.hms-cinema-timeline {
+  padding: 8px 18px 12px;
+  background: rgba(6, 8, 12, 0.96);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+.hms-scrub-bar {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: height 0.15s ease;
+}
+
+.hms-scrub-bar:hover {
+  height: 5px;
+}
+
+.hms-scrub-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #38ef7d, #00f2fe);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.hms-chapter-buttons {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.hms-chapter-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hms-chapter-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hms-chapter-btn.active {
+  background: rgba(56, 239, 125, 0.1);
+  border-color: rgba(56, 239, 125, 0.4);
+}
+
+.hms-chapter-btn-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.hms-chapter-btn-fill {
+  height: 100%;
+  background: #38ef7d;
+  border-radius: 9999px;
+}
+
+.hms-chapter-btn-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hms-btn-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  color: #7a9c96;
+}
+
+.hms-chapter-btn.active .hms-btn-num {
+  color: #38ef7d;
+}
+
+.hms-btn-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hms-chapter-btn.active .hms-btn-text {
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .hms-cinema-specs-card {
+    display: none;
+  }
+  .hms-cinema-narrative-overlay {
+    max-width: 280px;
+    padding: 10px 12px;
+  }
+  .hms-narrative-heading {
+    font-size: 13px;
+  }
+}

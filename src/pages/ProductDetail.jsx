@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getProductBySlug, getAdjacentProducts, productData } from '../data/productData'
+import { scrollTo } from '../hooks/useSmoothScroll'
 import './ProductDetail.css'
 
 export default function ProductDetail() {
@@ -14,7 +15,7 @@ export default function ProductDetail() {
         if (!product) return
         document.title = `${product.title} | Hesyra Labs`
         document.querySelector('meta[name="description"]')?.setAttribute('content', product.shortDescription)
-        window.scrollTo(0, 0)
+        scrollTo(0, { immediate: true })
     }, [product, slug])
 
     if (!product) {

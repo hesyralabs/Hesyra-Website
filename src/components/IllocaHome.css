@@ -1,0 +1,51 @@
+/* Illoca Scroll-Driven Architecture Styles */
+#illoca-wrapper {
+  background: #001A33;
+  color: #E8E6E5;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+#illoca-wrapper ::selection {
+  background: rgba(122, 156, 150, 0.3);
+  color: #E8E6E5;
+}
+
+#illoca-wrapper ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@keyframes hsPulse {
+  0%, 100% { opacity: .3 }
+  50% { opacity: 1 }
+}
+
+@keyframes hsCue {
+  0% { transform: translateY(-100%) }
+  60%, 100% { transform: translateY(100%) }
+}
+
+/* Fluid reveal animations */
+[data-reveal] {
+  will-change: transform, opacity;
+}
+
+/* Responsive Trail / Doctor Dashboard Section */
+@media (max-width: 1024px) {
+  #trail [data-world] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  #trail [data-world] > div:first-child {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  #trail [data-world] > div:last-child {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    height: auto !important;
+    min-height: 480px !important;
+  }
+}

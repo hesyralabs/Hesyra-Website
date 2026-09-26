@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 import { getVisitorProfile } from '../utils/analytics'
+import Reveal from '../motion/Reveal'
 import './Trust.css'
 
 const testimonials = [
@@ -81,14 +82,14 @@ export default function Trust() {
     return (
         <section id="dentists" className="trust-section container">
             {/* ── Header ── */}
-            <div className="trust-header">
+            <Reveal className="trust-header">
                 <div className="mono-label" style={{ marginBottom: '0.75rem' }}>FOR DENTISTS</div>
                 <h2 className="trust-headline">Your Lab. Upgraded.</h2>
                 <p className="trust-sub">Leave behind slow turnaround and quality variance. Partner with a deep-tech lab that matches your clinical standards.</p>
-            </div>
+            </Reveal>
 
             {/* ── Metrics Strip ── */}
-            <div className="trust-metrics">
+            <Reveal className="trust-metrics" stagger>
                 {metrics.map((m, i) => (
                     <div key={i} className="trust-metric glass-panel">
                         <span className="trust-metric-val">{m.val}</span>
@@ -96,7 +97,7 @@ export default function Trust() {
                         <span className="trust-metric-desc">{m.desc}</span>
                     </div>
                 ))}
-            </div>
+            </Reveal>
 
             {/* ── Compliance Badges ── */}
             <div className="trust-compliance">

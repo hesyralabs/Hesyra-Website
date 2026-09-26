@@ -117,6 +117,46 @@ for (const route of ROUTES) {
         // Extra wait for animations/lazy components
         await new Promise(r => setTimeout(r, 800))
 
+        // Lazy-loaded routes mount late, so their entry fade can still be
+        // running here. framer-motion drives it on its own rAF loop and would
+        // overwrite anything we cleared on the very next frame — so wait for it
+        // to settle rather than racing it.
+        await page.waitForFunction(
+            () => {
+                const el = document.querySelector('main')
+                return !el || parseFloat(getComputedStyle(el).opacity) >= 0.99
+            },
+            { timeout: 5000 }
+        ).catch(() => { /* fall through; the reset below still runs */ })
+
+        // Entry animations leave content at opacity:0 in the serialised HTML,
+        // which is exactly the hidden-content pattern crawlers penalise:
+        //   - Reveal (src/motion/Reveal.jsx) holds below-the-fold targets at 0
+        //   - the App wrapper and <main> fade in via framer-motion, so without
+        //     this the whole page serialises invisible
+        // Only opacity/transform/will-change are reset, and only on containers
+        // that are always meant to be visible — genuinely hidden UI (inactive
+        // portal views, modals, exit-intent) keeps its state.
+        await page.evaluate(() => {
+            const clear = (node) => {
+                if (!node || !node.style) return
+                node.style.opacity = ''
+                node.style.transform = ''
+                node.style.willChange = ''
+            }
+
+            document.querySelectorAll('[data-reveal]').forEach((el) => {
+                clear(el)
+                Array.from(el.children).forEach(clear)
+                el.dataset.reveal = 'done'
+            })
+
+            // Page-level entry fades.
+            document.querySelectorAll('main').forEach(clear)
+            const root = document.getElementById('root')
+            if (root) Array.from(root.children).forEach(clear)
+        })
+
         const html = await page.content()
 
         // Determine output path

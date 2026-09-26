@@ -28,7 +28,9 @@
     overflow: hidden;
     height: 100%;
     cursor: default;
-    transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.3s ease;
+    transition: transform var(--dur-ui) var(--ease-out),
+                box-shadow var(--dur-ui) var(--ease-out),
+                border-color var(--dur-ui) var(--ease-out);
 }
 
 .glow-card:hover {

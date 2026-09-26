@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { productData } from '../data/productData'
 import { trackHoverIntent } from '../utils/analytics'
+import Reveal from '../motion/Reveal'
 import './Products.css'
 
 // Product JSON-LD for search engine rich results
@@ -42,13 +43,13 @@ export default function Products() {
     return (
         <section id="products" className="container" aria-label="Dental Products and Services">
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-            <div className="section-header">
+            <Reveal className="section-header">
                 <div className="mono-label" style={{ marginBottom: '1rem' }}>OUTPUTS</div>
                 <h2>Clinical Deliverables</h2>
                 <p className="section-subtitle">Every restoration, guide, and appliance fabricated to clinical precision — in 48 hours.</p>
-            </div>
+            </Reveal>
 
-            <div className="product-grid">
+            <Reveal className="product-grid" stagger>
                 {productData.map(product => (
                     <div 
                         key={product.id} 
@@ -91,7 +92,7 @@ export default function Products() {
                         </div>
                     </div>
                 ))}
-            </div>
+            </Reveal>
         </section>
     )
 }

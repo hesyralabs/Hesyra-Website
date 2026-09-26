@@ -13,6 +13,18 @@
   --font-hero: 'Instrument Serif', Georgia, serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* ─── Motion ───
+     Mirrors src/motion/tokens.js — keep the two in sync. --ease-out is the
+     signature curve and matches the Lenis scroll easing, so page and content
+     decelerate identically. Use these instead of ad-hoc values. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --dur-micro: 0.15s;   /* hover, focus, tap */
+  --dur-ui: 0.3s;       /* buttons, cards, accordions */
+  --dur-element: 0.5s;  /* one element revealing */
+  --dur-section: 0.8s;  /* a whole section, or a large move */
 }
 
 /* ═══════════════════════════════════════════════
@@ -72,9 +84,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* No scroll-behavior: smooth — native smooth scroll is a stepped,
+     non-interruptible animation and fights the Lenis ticker. */
   overflow-x: clip; /* clip instead of hidden — hidden breaks position: sticky */
-  min-width: 1200px; /* LOCK to desktop width — prevents ALL mobile breakpoints from firing */
 }
 
 html, body {
@@ -218,6 +230,20 @@ h4 {
   }
 }
 
+/* ─── Reduced motion ───
+   Lenis is not started at all when this is set (see useSmoothScroll); this
+   covers the CSS/GSAP animation that would otherwise still run. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ─── Off-screen rendering optimization ─── */
 /* Tells the browser to skip rendering sections until they're near the viewport */
 .trust-section,
@@ -238,7 +264,9 @@ h4 {
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+  transition: border-color var(--dur-ui) var(--ease-out),
+              box-shadow var(--dur-ui) var(--ease-out),
+              background var(--dur-ui) var(--ease-out);
 }
 
 .glass-panel::after {
@@ -268,7 +296,7 @@ h4 {
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--dur-micro) var(--ease-out);
   text-decoration: none;
   gap: 8px;
   border: none;
@@ -283,7 +311,7 @@ h4 {
   justify-content: center;
   gap: 8px;
   pointer-events: none;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform var(--dur-ui) var(--ease-out);
   width: 100%;
   height: 100%;
 }

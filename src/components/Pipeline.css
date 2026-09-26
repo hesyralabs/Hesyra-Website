@@ -1,0 +1,342 @@
+/* ═══════════════════════════════════════════════
+   THE 48-HOUR PIPELINE
+   Scroll-scrubbed manufacturing sequence.
+   ═══════════════════════════════════════════════ */
+
+.pipeline {
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-deep) 45%, var(--bg-base) 100%);
+}
+
+/* Only claim the scroll travel once the canvas is actually running — otherwise
+   the fallback list stands in and the section stays its natural height. */
+.pipeline.is-live {
+    height: 500vh;
+}
+
+.pipeline-sticky {
+    display: none;
+}
+
+.pipeline.is-live .pipeline-sticky {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.pipeline-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ─── Overlay ─── */
+.pipeline-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto 1fr auto;
+    align-content: space-between;
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+    pointer-events: none;
+}
+
+.pipeline-head {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 30ch;
+}
+
+.pipeline-head h2 {
+    margin-top: 0.75rem;
+    font-family: var(--font-hero);
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+}
+
+.pipeline-head em {
+    font-style: italic;
+    color: var(--accent);
+}
+
+/* ─── Active stage copy ─── */
+.pipeline-stage {
+    grid-column: 1;
+    grid-row: 3;
+    max-width: 42ch;
+    /* keeps the block from jumping as stage text changes length */
+    min-height: 11rem;
+}
+
+.pipeline-stage-index {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+}
+
+.pipeline-stage h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+}
+
+.pipeline-stage p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+/* ─── Telemetry readout ─── */
+.pipeline-telemetry {
+    grid-column: 2;
+    grid-row: 3;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    text-align: right;
+    border-right: 1px solid var(--border-strong);
+    padding-right: 1rem;
+    /* clears the fixed FloatingContact button in the bottom-right corner */
+    margin-bottom: 4.5rem;
+}
+
+.tele-item {
+    display: block;
+    font-family: var(--font-mono);
+}
+
+.tele-item i {
+    display: block;
+    font-style: normal;
+    font-size: 0.625rem;
+    letter-spacing: 0.24em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.15rem;
+}
+
+.tele-item b {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--accent-bright);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ─── Stage rail ─── */
+.pipeline-rail {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    justify-self: end;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pipeline-rail li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    opacity: 0.35;
+    transition: opacity var(--dur-element) var(--ease-out);
+}
+
+.pipeline-rail li.done {
+    opacity: 0.6;
+}
+
+.pipeline-rail li.active {
+    opacity: 1;
+}
+
+.rail-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.pipeline-rail li.active .rail-label {
+    color: var(--text-primary);
+}
+
+.rail-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+    transition: background var(--dur-element) var(--ease-out),
+                box-shadow var(--dur-element) var(--ease-out),
+                transform var(--dur-element) var(--ease-out);
+}
+
+.pipeline-rail li.done .rail-dot {
+    background: var(--accent);
+}
+
+.pipeline-rail li.active .rail-dot {
+    background: var(--accent-bright);
+    box-shadow: 0 0 0 4px var(--accent-glow);
+    transform: scale(1.25);
+}
+
+/* ═══════════════════════════════════════════════
+   Fallback — reduced motion, no WebGL, prerender
+   ═══════════════════════════════════════════════ */
+.pipeline-fallback {
+    padding: 6rem 0;
+}
+
+.pipeline.is-live .pipeline-fallback {
+    display: none;
+}
+
+.pipeline-fallback ol {
+    list-style: none;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    gap: 2.5rem;
+}
+
+.pipeline-fallback li {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.pipeline-fallback li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.fallback-index {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    padding-top: 0.35rem;
+}
+
+.pipeline-fallback h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.pipeline-fallback p {
+    color: var(--text-secondary);
+    max-width: 60ch;
+    line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════════════
+   Responsive
+   ═══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .pipeline.is-live {
+        height: 420vh;
+    }
+
+    .pipeline-overlay {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto 1fr auto auto;
+        padding-top: 6rem;
+    }
+
+    .pipeline-head {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .pipeline-stage {
+        grid-column: 1;
+        grid-row: 3;
+        min-height: 12rem;
+    }
+
+    /* rail becomes a horizontal progress strip under the copy */
+    .pipeline-rail {
+        grid-column: 1;
+        grid-row: 4;
+        align-self: end;
+        justify-self: stretch;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+    }
+
+    .pipeline-rail li {
+        flex-direction: column;
+        gap: 0.4rem;
+        justify-content: flex-start;
+        text-align: center;
+    }
+
+    .rail-label {
+        font-size: 0.5625rem;
+        letter-spacing: 0.1em;
+    }
+
+    .pipeline-telemetry {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+        flex-direction: row;
+        gap: 1.5rem;
+        text-align: left;
+        border-right: none;
+        border-left: 1px solid var(--border-strong);
+        padding-right: 0;
+        padding-left: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .pipeline-fallback li {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .pipeline-stage p {
+        font-size: 0.9375rem;
+    }
+}
+
+/* Reduced motion never mounts the canvas — make sure the section can't take
+   up scroll travel even if the class somehow lands. */
+@media (prefers-reduced-motion: reduce) {
+    .pipeline.is-live {
+        height: auto;
+    }
+
+    .pipeline.is-live .pipeline-sticky {
+        display: none;
+    }
+
+    .pipeline.is-live .pipeline-fallback {
+        display: block;
+    }
+}

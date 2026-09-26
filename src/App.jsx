@@ -20,10 +20,14 @@ import GoogleOneTap from './components/GoogleOneTap'
 import AnalyticsTracker from './components/AnalyticsTracker'
 import AdminInsights from './components/AdminInsights'
 import ExitIntent from './components/ExitIntent'
+import { useSmoothScroll, scrollTo } from './hooks/useSmoothScroll'
+import { DUR, BEZIER } from './motion/tokens'
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false)
   const { pathname, hash } = useLocation()
+
+  useSmoothScroll()
 
   // Handle scroll to top on path change, or scroll to hash if present
   useEffect(() => {
@@ -33,11 +37,12 @@ export default function App() {
         const id = hash.replace('#', '')
         const element = document.getElementById(id)
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
+          scrollTo(element)
         }
       }, 100)
     } else {
-      window.scrollTo(0, 0)
+      // immediate: a route change should land at the top, not animate there
+      scrollTo(0, { immediate: true })
     }
   }, [pathname, hash])
 
@@ -51,7 +56,7 @@ export default function App() {
         <motion.div
            initial={{ opacity: 0 }}
            animate={{ opacity: 1 }}
-           transition={{ duration: 0.6 }}
+           transition={{ duration: DUR.section, ease: BEZIER.out }}
         >
           <Toaster 
         position="top-center" 
@@ -95,7 +100,7 @@ export default function App() {
       <AnalyticsTracker />
       <AdminInsights />
       <ExitIntent />
-      <Footer />
+      {pathname !== '/' && <Footer />}
       <FloatingContact />
       </motion.div>
       )}

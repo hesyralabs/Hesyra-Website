@@ -11,7 +11,7 @@
     border: 1px solid var(--border-default);
     border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all var(--dur-ui) var(--ease-out);
 }
 
 .faq-item.open {
@@ -48,7 +48,7 @@
     height: 32px;
     border-radius: 50%;
     background: var(--accent-glow);
-    transition: all 0.3s ease;
+    transition: all var(--dur-ui) var(--ease-out);
 }
 
 .faq-item.open .faq-icon-wrapper {

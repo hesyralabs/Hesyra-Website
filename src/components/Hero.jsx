@@ -53,7 +53,7 @@ export default function Hero() {
                     muted 
                     playsInline
                 >
-                    <source src="" type="video/mp4" />
+                    <source src="/tooth-video.mp4" type="video/mp4" />
                 </video>
                 <div className="hero-video-overlay"></div>
             </div>

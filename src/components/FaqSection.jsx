@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Plus, Minus } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Reveal from '../motion/Reveal'
+import { DUR, BEZIER } from '../motion/tokens'
 import './FaqSection.css'
 
 const faqs = [
@@ -48,13 +50,13 @@ export default function FaqSection() {
             {/* FAQ structured data for search engines */}
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
-            <div className="faq-header text-center" style={{ marginBottom: '4rem' }}>
+            <Reveal className="faq-header text-center" style={{ marginBottom: '4rem' }}>
                 <div className="mono-label">CLINICAL SUPPORT</div>
                 <h2 style={{ fontSize: '3rem', margin: '1rem 0' }}>Frequently Asked Questions</h2>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem' }}>Everything you need to know about transitioning to a digital lab.</p>
-            </div>
+            </Reveal>
 
-            <div className="faq-accordion" role="list">
+            <Reveal className="faq-accordion" role="list" stagger={0.05}>
                 {faqs.map((faq, idx) => {
                     const isOpen = openIndex === idx;
                     return (
@@ -72,7 +74,7 @@ export default function FaqSection() {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: 'auto', opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                        transition={{ duration: DUR.ui, ease: BEZIER.inOut }}
                                     >
                                         <div className="faq-answer">
                                             {faq.answer}
@@ -83,7 +85,7 @@ export default function FaqSection() {
                         </div>
                     )
                 })}
-            </div>
+            </Reveal>
         </section>
     )
 }

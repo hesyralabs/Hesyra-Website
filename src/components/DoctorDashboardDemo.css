@@ -1,0 +1,470 @@
+/* DoctorDashboardDemo.css - Exact, Clean, Zero-Fluff Replica of Hesyra Portal */
+.hpd-window-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  background: #001A33;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  color: #E8E6E5;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+/* 1. Topbar Navigation */
+.hpd-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  background: rgba(0, 13, 26, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.hpd-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hpd-logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hpd-official-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.hpd-logo-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hpd-logo-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #E8E6E5;
+  letter-spacing: -0.01em;
+}
+
+.hpd-search-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 26, 51, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 5px 14px;
+  width: 230px;
+}
+
+.hpd-search-icon {
+  color: #5e7a80;
+}
+
+.hpd-search-input {
+  background: transparent;
+  border: none;
+  color: #E8E6E5;
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+}
+.hpd-search-input::placeholder {
+  color: #5e7a80;
+}
+
+.hpd-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hpd-nav-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: #9baab0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.hpd-nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #E8E6E5;
+}
+.hpd-nav-icon-btn.active {
+  background: rgba(122, 156, 150, 0.16);
+  color: #7A9C96;
+}
+
+.hpd-nav-notif-wrap {
+  position: relative;
+}
+
+.hpd-notif-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hpd-user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(122, 156, 150, 0.15);
+  border: 1px solid rgba(122, 156, 150, 0.35);
+  color: #7A9C96;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+}
+
+/* 2. Workspace Body */
+.hpd-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px;
+  overflow: hidden;
+}
+
+.hpd-workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+}
+
+.hpd-workspace-title {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #E8E6E5;
+  margin: 0 0 3px;
+}
+
+.hpd-workspace-subtitle {
+  font-size: 13px;
+  color: #9baab0;
+  margin: 0;
+}
+
+.hpd-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hpd-wallet-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #E8E6E5;
+  background: rgba(0, 36, 63, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.hpd-btn-new-rx {
+  background: #E8E6E5;
+  color: #001A33;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s ease;
+}
+.hpd-btn-new-rx:hover {
+  opacity: 0.92;
+}
+
+/* Toolbar & Segments */
+.hpd-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 10px 0 10px;
+}
+
+.hpd-segments {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: rgba(0, 13, 26, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+}
+
+.hpd-segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #9baab0;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.hpd-segment:hover {
+  color: #E8E6E5;
+}
+.hpd-segment.on {
+  background: rgba(0, 36, 63, 0.85);
+  color: #E8E6E5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.hpd-seg-count {
+  font-size: 11px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #9baab0;
+}
+.hpd-segment.on .hpd-seg-count {
+  background: rgba(122, 156, 150, 0.2);
+  color: #7A9C96;
+}
+
+.hpd-filter-search {
+  width: 220px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  color: #E8E6E5;
+  background: rgba(0, 36, 63, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  outline: none;
+}
+.hpd-filter-search:focus {
+  border-color: #7A9C96;
+}
+
+/* Case List Table */
+.hpd-case-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 11px;
+  overflow: hidden;
+  background: rgba(0, 20, 40, 0.25);
+}
+
+.hpd-list-head,
+.hpd-case-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1.2fr) minmax(240px, 1.8fr) minmax(160px, 1.1fr) 95px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 14px;
+}
+
+.hpd-list-head {
+  height: 32px;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #9baab0;
+  background: rgba(0, 13, 26, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.hpd-list-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.hpd-case-row {
+  min-height: 54px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.2s ease, opacity 0.4s ease, transform 0.4s ease;
+}
+.hpd-case-row:hover {
+  background: rgba(0, 36, 63, 0.45);
+}
+.hpd-case-row.hpd-row-delivered {
+  background: rgba(122, 156, 150, 0.06);
+}
+
+/* Cell: Patient */
+.hpd-cell-patient {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.hpd-patient-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #E8E6E5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hpd-case-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #9baab0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hpd-case-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hpd-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* Cell: 5-Milestone Track */
+.hpd-track {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.hpd-step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.hpd-step-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease;
+}
+
+.hpd-step-label {
+  font-size: 9.5px;
+  letter-spacing: 0.02em;
+  color: #9baab0;
+  opacity: 0.55;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.hpd-step.step-done .hpd-step-bar {
+  background: rgba(122, 156, 150, 0.55);
+}
+.hpd-step.step-done .hpd-step-label {
+  opacity: 0.8;
+  color: #9baab0;
+}
+
+.hpd-step.step-now .hpd-step-bar {
+  background: #7A9C96;
+}
+.hpd-step.step-now .hpd-step-label {
+  color: #7A9C96;
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* Cell: Status - Clean Clinical Plain Text */
+.hpd-cell-status {
+  min-width: 0;
+}
+
+.hpd-lab-state {
+  font-size: 12px;
+  color: #9baab0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.hpd-lab-state.delivered-state {
+  color: #7A9C96;
+  font-weight: 500;
+}
+
+/* Cell: Received */
+.hpd-cell-received {
+  font-size: 12px;
+  color: #9baab0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Responsive Rules */
+@media (max-width: 900px) {
+  .hpd-list-head,
+  .hpd-case-row {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .hpd-col-progress,
+  .hpd-track,
+  .hpd-col-received,
+  .hpd-cell-received {
+    display: none;
+  }
+}
